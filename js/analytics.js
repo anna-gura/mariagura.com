@@ -12,7 +12,11 @@
    ─────────────────────────────────────────────────── */
 const MEASUREMENT_ID = "G-NNK6EY45KF";
 
-if (/^G-[A-Z0-9]+$/.test(MEASUREMENT_ID) && MEASUREMENT_ID !== "G-XXXXXXXXXX") {
+if (
+  location.hostname === "mariagura.com" &&
+  /^G-[A-Z0-9]+$/.test(MEASUREMENT_ID) &&
+  MEASUREMENT_ID !== "G-XXXXXXXXXX"
+) {
   window.dataLayer = window.dataLayer || [];
 
   // Google's library reads the "arguments" object pushed here, not an
