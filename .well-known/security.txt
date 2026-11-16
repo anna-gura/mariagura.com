@@ -1,0 +1,9 @@
+# Where to report a security problem with this site.
+# https://securitytxt.org
+#
+# TODO: once the domain is live, add
+# Canonical: https://<domain>/.well-known/security.txt
+
+Contact: mailto:paintedfox.studio@gmail.com
+Expires: 2027-11-16T00:00:00.000Z
+Preferred-Languages: en, uk

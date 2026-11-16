@@ -1,0 +1,14 @@
+# Editor and OS noise
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Wrangler's local state
+.wrangler/
+
+# Nothing here is built, but keep these out if tooling ever arrives
+node_modules/
+dist/
+.env
+.env.*
