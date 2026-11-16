@@ -1,0 +1,89 @@
+# Security headers.
+#
+# Read by Cloudflare and applied to every response. Kept in the
+# repository rather than clicked into a dashboard so that the rules are
+# reviewable, diffable, and survive a project being recreated.
+#
+# The rule for this file: every origin listed must have a reason, and
+# the reason is written below. Anything that cannot be justified is
+# removed.
+#
+# ---------------------------------------------------------------
+# What the policy allows, and why
+#
+# Nothing outside this domain. The site is one page of text, one photo,
+# a stylesheet, a few lines of script and six font files, and all of
+# them are served from here:
+#
+#   fonts    assets/fonts, instead of Google Fonts, so that no other
+#            origin is needed for type
+#   grain    assets/grain.svg, instead of a data: URI in the stylesheet,
+#            so that img-src does not need data:
+#   styles   css/style.css only; the markup carries no style="" at all
+#   script   js/main.js only; the page carries no inline script
+#
+# The two <script type="application/ld+json"> blocks in index.html are
+# not an exception. They are data for search engines, the browser never
+# runs them, and script-src does not apply to them.
+#
+# Booking, WhatsApp, Instagram, TikTok and the map are plain links. A
+# link leaving the site is a navigation, not a load, so none of those
+# origins appears here — and nothing from them runs on this page.
+#
+# ---------------------------------------------------------------
+# Considered and not used
+#
+#   The Vagaro booking widget
+#     Vagaro offers an embeddable widget. It would need script-src,
+#     frame-src and connect-src for Vagaro and whatever Vagaro loads in
+#     turn, for a feature a link already does. The link opens the same
+#     booking page, in its own tab, with nobody else's code on ours.
+#
+#   Analytics
+#     None. If added later, it gets its own lines here, with a reason.
+#
+#   require-trusted-types-for 'script'
+#     There is nothing for it to guard: main.js never writes markup.
+#     Worth adding the day script grows beyond toggling one class.
+#
+#   HSTS preload
+#     A one-way door: browsers ship the list baked in, and removal takes
+#     months. Worth adding once the domain has settled.
+
+/*
+  Content-Security-Policy: default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests
+
+  # HTTPS only, for a year, including any subdomain.
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+  # A file served as text/plain stays text/plain, whatever it contains.
+  X-Content-Type-Options: nosniff
+
+  # frame-ancestors above is the modern rule; this is for browsers that
+  # never learned it. Nobody has a reason to show this page in a frame,
+  # and a framed copy is how a fake "book here" overlay gets built.
+  X-Frame-Options: DENY
+
+  # The origin travels to other sites, the path never does. Vagaro and
+  # Instagram still see that a visitor came from this site, which is
+  # worth knowing; with one page, the path would say nothing anyway.
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # Hardware and ambient APIs the site does not use and must not acquire
+  # by accident. An empty list denies the page and everything it frames.
+  Permissions-Policy: accelerometer=(), autoplay=(), browsing-topics=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(), geolocation=(), gyroscope=(), idle-detection=(), local-fonts=(), magnetometer=(), microphone=(), midi=(), payment=(), publickey-credentials-get=(), screen-wake-lock=(), serial=(), usb=(), xr-spatial-tracking=()
+
+  # Our own files cannot be pulled into another site's page. Link
+  # previews are unaffected: WhatsApp, Facebook and Google fetch the
+  # photo from their servers, where this header does not apply.
+  Cross-Origin-Resource-Policy: same-origin
+
+  # Isolates this window from anything it opens. Every outside link
+  # already carries rel="noopener"; this holds even if one forgets.
+  Cross-Origin-Opener-Policy: same-origin
+
+# Font files never change without changing name, so they can be kept for
+# a year. Everything else keeps Cloudflare's default, which checks for a
+# newer copy on each visit — a new photo or price shows up at once.
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable

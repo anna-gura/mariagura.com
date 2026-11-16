@@ -9,10 +9,8 @@
 <meta property="og:description" content="Precision bobs, pixies, layers and curly cuts. $140 for any length, wash and blow-dry included. Thu–Sat 10–6.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#0B0704">
-<!-- TODO: canonical + og:image once the domain and photos exist -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- TODO: once the domain is live, add <link rel="canonical"> and make the image URLs below absolute -->
+<meta property="og:image" content="images/maria-gura.jpg">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -36,7 +34,16 @@
   "priceRange": "$$",
   "knowsLanguage": ["en", "uk", "ru"],
   "areaServed": ["Hallandale Beach", "Aventura", "Sunny Isles Beach", "Golden Beach", "Hollywood", "North Miami Beach", "Bal Harbour", "Miami Beach", "Fort Lauderdale", "Miami"],
-  "employee": { "@type": "Person", "name": "Maria Gura", "jobTitle": "Hairstylist" },
+  "employee": { "@type": "Person", "name": "Maria Gura", "jobTitle": "Hairstylist", "image": "images/maria-gura.jpg" },
+  "image": "images/maria-gura.jpg",
+  "sameAs": [
+    "https://www.instagram.com/womens.haircut.miami/",
+    "https://www.tiktok.com/@guramariahaircut"
+  ],
+  "potentialAction": {
+    "@type": "ReserveAction",
+    "target": "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVDbvYZsRbhAptQzbbm7GgDcwnjyCqwp7zsIEo/Ez3HB1ZsWcmwP61o4NrvgE0phO7OywcnB5UcsrumbVtzE0nMVJLJdPSKB/vt3mfkV/UhLJYPYe6byilDAQ1V3dABpL3WQs6q6Q+Q5jC7TtFvVKQ9042T9uSpSU/9s1L0h7MzUqxbCcYFdTby5lhnulZ4Y6B5/o4Pa1DmrM/BZS9leKmcGDRkD1kLUozFzNtafPtRz0O83yVJUekiHMa2pz99QHsF57OAmX54TL8Z05iAUDZJzmD2EBjYmCaRtBg/q2FefUj9Fap5cD81SyO0qzo1R7k9bGSxKA9IU05LXuTmj4A6P05jykJHCZaH15q4DV6e3Z2PwqIHd2iHIQOXltIdB0pRliA1bKwg4LgsX4xd7e/QncTavDeUfDSOuvLIptYjuMKnPwFPrjuIFpOlv5HZ9xQg=="
+  },
   "makesOffer": [
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Women's haircut" }, "price": "140", "priceCurrency": "USD" },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Consultation (20 min)" }, "price": "35", "priceCurrency": "USD" },
@@ -172,19 +179,12 @@
  ]
 }
 </script>
+<link rel="preload" href="assets/fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/manrope-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/style.css">
 <script src="js/main.js" defer></script>
 </head>
 <body>
-
-<!--
-  LINKS — replace the placeholders before going live:
-  VAGARO    → Maria's Vagaro booking page
-  WHATSAPP  → https://wa.me/1XXXXXXXXXX
-  INSTAGRAM → https://instagram.com/...
-  TIKTOK    → https://tiktok.com/@...
-  Search for href="#vagaro", "#whatsapp", "#instagram", "#tiktok".
--->
 
 <div class="grain" aria-hidden="true"></div>
 
@@ -199,7 +199,7 @@
       <a href="#location">Location</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <span class="lamp small"><a class="book" href="#vagaro"><span>Book on Vagaro</span></a></span>
+    <span class="lamp small"><a class="book" href="https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVDbvYZsRbhAptQzbbm7GgDcwnjyCqwp7zsIEo/Ez3HB1ZsWcmwP61o4NrvgE0phO7OywcnB5UcsrumbVtzE0nMVJLJdPSKB/vt3mfkV/UhLJYPYe6byilDAQ1V3dABpL3WQs6q6Q+Q5jC7TtFvVKQ9042T9uSpSU/9s1L0h7MzUqxbCcYFdTby5lhnulZ4Y6B5/o4Pa1DmrM/BZS9leKmcGDRkD1kLUozFzNtafPtRz0O83yVJUekiHMa2pz99QHsF57OAmX54TL8Z05iAUDZJzmD2EBjYmCaRtBg/q2FefUj9Fap5cD81SyO0qzo1R7k9bGSxKA9IU05LXuTmj4A6P05jykJHCZaH15q4DV6e3Z2PwqIHd2iHIQOXltIdB0pRliA1bKwg4LgsX4xd7e/QncTavDeUfDSOuvLIptYjuMKnPwFPrjuIFpOlv5HZ9xQg==" target="_blank" rel="noopener"><span>Book on Vagaro</span></a></span>
   </div>
 </header>
 
@@ -214,8 +214,8 @@
     </h1>
     <p class="lede">I'm Maria Gura, an independent hairstylist with 30 years of experience, and I do one thing: women's haircuts. Every cut starts with a dry-hair diagnosis and is built around your head shape, density and natural texture, so it's easy to style at home and keeps its shape as it grows. I work at 410 NE 1st Ave in Hallandale Beach, a short drive from Aventura, Sunny Isles Beach and Hollywood.</p>
     <div class="actions">
-      <span class="lamp"><a class="book" href="#vagaro"><span>Book online on Vagaro</span></a></span>
-      <a class="quiet" href="#whatsapp">Message on WhatsApp</a>
+      <span class="lamp"><a class="book" href="https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVDbvYZsRbhAptQzbbm7GgDcwnjyCqwp7zsIEo/Ez3HB1ZsWcmwP61o4NrvgE0phO7OywcnB5UcsrumbVtzE0nMVJLJdPSKB/vt3mfkV/UhLJYPYe6byilDAQ1V3dABpL3WQs6q6Q+Q5jC7TtFvVKQ9042T9uSpSU/9s1L0h7MzUqxbCcYFdTby5lhnulZ4Y6B5/o4Pa1DmrM/BZS9leKmcGDRkD1kLUozFzNtafPtRz0O83yVJUekiHMa2pz99QHsF57OAmX54TL8Z05iAUDZJzmD2EBjYmCaRtBg/q2FefUj9Fap5cD81SyO0qzo1R7k9bGSxKA9IU05LXuTmj4A6P05jykJHCZaH15q4DV6e3Z2PwqIHd2iHIQOXltIdB0pRliA1bKwg4LgsX4xd7e/QncTavDeUfDSOuvLIptYjuMKnPwFPrjuIFpOlv5HZ9xQg==" target="_blank" rel="noopener"><span>Book online on Vagaro</span></a></span>
+      <a class="quiet" href="https://wa.me/message/JENNVTPJMPMOB1" target="_blank" rel="noopener">Message on WhatsApp</a>
     </div>
   </div>
   <div class="wrap">
@@ -234,7 +234,7 @@
   <div class="wrap">
     <div class="facts">
       <div class="price-big">
-        <p class="eyebrow" style="margin:0 0 .8rem">Women's haircut</p>
+        <p class="eyebrow price-label">Women's haircut</p>
         <div class="num"><sup>$</sup>140</div>
         <p>For any length and any shape, including consultation, wash, blow-dry and home-styling tips.</p>
       </div>
@@ -249,7 +249,7 @@
         <div><dt>Deposit</dt><dd>None required to book</dd></div>
         <div><dt>Languages</dt><dd>English, Ukrainian, Russian</dd></div>
         <div><dt>Parking</dt><dd>Free parking across from the salon; drive in from the railroad side</dd></div>
-        <div style="grid-column:span 2"><dt>How to book</dt><dd>Online on Vagaro · WhatsApp message · Instagram DM. All appointments are booked directly with me.</dd></div>
+        <div class="span-2"><dt>How to book</dt><dd>Online on Vagaro · WhatsApp message · Instagram DM. All appointments are booked directly with me.</dd></div>
       </dl>
     </div>
   </div>
@@ -386,7 +386,7 @@
             <tr><td class="svc">Women's haircut</td><td class="price">$140</td><td class="time">1.5–2 hrs</td><td class="note">Same price for short, shoulder-length, medium and long hair, any shape. Includes consultation, wash, blow-dry and styling tips.</td></tr>
             <tr><td class="svc">Consultation</td><td class="price">$35</td><td class="time">20 min</td><td class="note">Credited toward your haircut if you book one.</td></tr>
             <tr><td class="svc">Bang trim</td><td class="price">$70</td><td class="time"></td><td class="note">Shaping or creating bangs without cutting the rest of the hair.</td></tr>
-            <tr><td class="svc">Professional blow-dry</td><td class="price"><a href="#vagaro">see Vagaro</a></td><td class="time"></td><td class="note">For existing haircut clients.</td></tr>
+            <tr><td class="svc">Professional blow-dry</td><td class="price"><a href="https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVDbvYZsRbhAptQzbbm7GgDcwnjyCqwp7zsIEo/Ez3HB1ZsWcmwP61o4NrvgE0phO7OywcnB5UcsrumbVtzE0nMVJLJdPSKB/vt3mfkV/UhLJYPYe6byilDAQ1V3dABpL3WQs6q6Q+Q5jC7TtFvVKQ9042T9uSpSU/9s1L0h7MzUqxbCcYFdTby5lhnulZ4Y6B5/o4Pa1DmrM/BZS9leKmcGDRkD1kLUozFzNtafPtRz0O83yVJUekiHMa2pz99QHsF57OAmX54TL8Z05iAUDZJzmD2EBjYmCaRtBg/q2FefUj9Fap5cD81SyO0qzo1R7k9bGSxKA9IU05LXuTmj4A6P05jykJHCZaH15q4DV6e3Z2PwqIHd2iHIQOXltIdB0pRliA1bKwg4LgsX4xd7e/QncTavDeUfDSOuvLIptYjuMKnPwFPrjuIFpOlv5HZ9xQg==" target="_blank" rel="noopener">see Vagaro</a></td><td class="time"></td><td class="note">For existing haircut clients.</td></tr>
           </tbody>
         </table>
         <p class="fine">No extra charge for long or thick hair or a complex shape. Skipping the wash or blow-dry doesn't change the price.</p>
@@ -428,7 +428,12 @@
       <h2>About <em>Maria</em></h2>
     </div>
     <div class="about">
-      <div class="photo-slot">Photo of Maria — TODO</div>
+      <figure class="portrait">
+        <picture>
+          <source srcset="images/maria-gura.webp" type="image/webp">
+          <img src="images/maria-gura.jpg" width="640" height="640" loading="lazy" alt="Maria Gura, women's haircut specialist in Hallandale Beach, FL">
+        </picture>
+      </figure>
       <div class="prose">
         <p>I'm Maria Gura, a Ukrainian hairstylist with 30 years of experience, specializing in women's haircuts. Before moving to the United States I ran my own hair business in Ukraine, and I also created EdgeLine, a program where I teach other hairstylists modern women's cutting: precision lines, bobs, layered shapes, pixie cuts, bangs and cutting for curly hair.</p>
         <p>Teaching means I don't just repeat cuts. I know why each line and angle is there, so I can adapt the same haircut to different textures and head shapes.</p>
@@ -450,11 +455,11 @@
         <p class="eyebrow">Miami women's haircuts. Maria Gura</p>
         <p class="addr">410 NE 1st Ave,<br>Hallandale Beach, FL 33009</p>
         <p><b>Thursday–Saturday, 10 am–6 pm</b> <span class="soft">· Closed Sunday–Wednesday</span></p>
-        <p class="soft" style="margin-top:.6rem">Free parking across from the salon; drive in from the railroad side.</p>
-        <a class="quiet" href="https://www.google.com/maps/search/?api=1&amp;query=410+NE+1st+Ave+Hallandale+Beach+FL+33009">Open in Google Maps</a>
+        <p class="soft parking">Free parking across from the salon; drive in from the railroad side.</p>
+        <a class="quiet" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=410+NE+1st+Ave+Hallandale+Beach+FL+33009">Open in Google Maps</a>
       </div>
       <div>
-        <p style="margin-bottom:.8rem">This is my only location. Clients come from nearby cities in Broward and Miami-Dade:</p>
+        <p class="loc-intro">This is my only location. Clients come from nearby cities in Broward and Miami-Dade:</p>
         <ul>
           <li><b>Aventura, Sunny Isles Beach and Golden Beach</b>, just south of Hallandale</li>
           <li><b>Hollywood</b>, just north</li>
@@ -473,7 +478,7 @@
       <h2>Booking</h2>
     </div>
     <div class="book-grid">
-      <div><h3>How to book</h3><p>Online on <a href="#vagaro">Vagaro</a> (fastest), by <a href="#whatsapp">WhatsApp</a> message or by <a href="#instagram">Instagram</a> DM. I communicate in writing, not by phone, so I can read your request carefully and answer precisely.</p></div>
+      <div><h3>How to book</h3><p>Online on <a href="https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVDbvYZsRbhAptQzbbm7GgDcwnjyCqwp7zsIEo/Ez3HB1ZsWcmwP61o4NrvgE0phO7OywcnB5UcsrumbVtzE0nMVJLJdPSKB/vt3mfkV/UhLJYPYe6byilDAQ1V3dABpL3WQs6q6Q+Q5jC7TtFvVKQ9042T9uSpSU/9s1L0h7MzUqxbCcYFdTby5lhnulZ4Y6B5/o4Pa1DmrM/BZS9leKmcGDRkD1kLUozFzNtafPtRz0O83yVJUekiHMa2pz99QHsF57OAmX54TL8Z05iAUDZJzmD2EBjYmCaRtBg/q2FefUj9Fap5cD81SyO0qzo1R7k9bGSxKA9IU05LXuTmj4A6P05jykJHCZaH15q4DV6e3Z2PwqIHd2iHIQOXltIdB0pRliA1bKwg4LgsX4xd7e/QncTavDeUfDSOuvLIptYjuMKnPwFPrjuIFpOlv5HZ9xQg==" target="_blank" rel="noopener">Vagaro</a> (fastest), by <a href="https://wa.me/message/JENNVTPJMPMOB1" target="_blank" rel="noopener">WhatsApp</a> message or by <a href="https://www.instagram.com/womens.haircut.miami/" target="_blank" rel="noopener">Instagram</a> DM. I communicate in writing, not by phone, so I can read your request carefully and answer precisely.</p></div>
       <div><h3>What to send</h3><p>Your name, last name and contact number. A photo of the cut you like and of your hair as it is now helps me prepare.</p></div>
       <div><h3>Deposit</h3><p>None. You can book without paying in advance.</p></div>
       <div><h3>7-day touch-up</h3><p>Within 7 days of your haircut, you can come back for a free, small technical adjustment of about 10 minutes, such as refining a line or one element of the cut. It doesn't cover a new shape, a change of mind about the original request, or a new haircut.</p></div>
@@ -518,12 +523,12 @@
     </div>
     <div>
       <div class="actions">
-        <span class="lamp"><a class="book" href="#vagaro"><span>Book on Vagaro</span></a></span>
+        <span class="lamp"><a class="book" href="https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVDbvYZsRbhAptQzbbm7GgDcwnjyCqwp7zsIEo/Ez3HB1ZsWcmwP61o4NrvgE0phO7OywcnB5UcsrumbVtzE0nMVJLJdPSKB/vt3mfkV/UhLJYPYe6byilDAQ1V3dABpL3WQs6q6Q+Q5jC7TtFvVKQ9042T9uSpSU/9s1L0h7MzUqxbCcYFdTby5lhnulZ4Y6B5/o4Pa1DmrM/BZS9leKmcGDRkD1kLUozFzNtafPtRz0O83yVJUekiHMa2pz99QHsF57OAmX54TL8Z05iAUDZJzmD2EBjYmCaRtBg/q2FefUj9Fap5cD81SyO0qzo1R7k9bGSxKA9IU05LXuTmj4A6P05jykJHCZaH15q4DV6e3Z2PwqIHd2iHIQOXltIdB0pRliA1bKwg4LgsX4xd7e/QncTavDeUfDSOuvLIptYjuMKnPwFPrjuIFpOlv5HZ9xQg==" target="_blank" rel="noopener"><span>Book on Vagaro</span></a></span>
       </div>
       <div class="links">
-        <a class="quiet" href="#whatsapp">WhatsApp</a>
-        <a class="quiet" href="#instagram">Instagram</a>
-        <a class="quiet" href="#tiktok">TikTok</a>
+        <a class="quiet" href="https://wa.me/message/JENNVTPJMPMOB1" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="quiet" href="https://www.instagram.com/womens.haircut.miami/" target="_blank" rel="noopener">Instagram</a>
+        <a class="quiet" href="https://www.tiktok.com/@guramariahaircut" target="_blank" rel="noopener">TikTok</a>
       </div>
     </div>
   </div>
@@ -536,16 +541,16 @@
     <span>Miami women's haircuts. Maria Gura</span>
     <span>410 NE 1st Ave, Hallandale Beach, FL 33009</span>
     <span>Thu–Sat 10 am–6 pm</span>
-    <a href="#vagaro">Vagaro</a>
-    <a href="#whatsapp">WhatsApp</a>
-    <a href="#instagram">Instagram</a>
-    <a href="#tiktok">TikTok</a>
+    <a href="https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVDbvYZsRbhAptQzbbm7GgDcwnjyCqwp7zsIEo/Ez3HB1ZsWcmwP61o4NrvgE0phO7OywcnB5UcsrumbVtzE0nMVJLJdPSKB/vt3mfkV/UhLJYPYe6byilDAQ1V3dABpL3WQs6q6Q+Q5jC7TtFvVKQ9042T9uSpSU/9s1L0h7MzUqxbCcYFdTby5lhnulZ4Y6B5/o4Pa1DmrM/BZS9leKmcGDRkD1kLUozFzNtafPtRz0O83yVJUekiHMa2pz99QHsF57OAmX54TL8Z05iAUDZJzmD2EBjYmCaRtBg/q2FefUj9Fap5cD81SyO0qzo1R7k9bGSxKA9IU05LXuTmj4A6P05jykJHCZaH15q4DV6e3Z2PwqIHd2iHIQOXltIdB0pRliA1bKwg4LgsX4xd7e/QncTavDeUfDSOuvLIptYjuMKnPwFPrjuIFpOlv5HZ9xQg==" target="_blank" rel="noopener">Vagaro</a>
+    <a href="https://wa.me/message/JENNVTPJMPMOB1" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="https://www.instagram.com/womens.haircut.miami/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.tiktok.com/@guramariahaircut" target="_blank" rel="noopener">TikTok</a>
   </div>
 </footer>
 
 <nav class="mbar" aria-label="Book">
-  <span class="lamp"><a class="book" href="#vagaro"><span>Book on Vagaro</span></a></span>
-  <a class="quiet" href="#whatsapp">WhatsApp</a>
+  <span class="lamp"><a class="book" href="https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVDbvYZsRbhAptQzbbm7GgDcwnjyCqwp7zsIEo/Ez3HB1ZsWcmwP61o4NrvgE0phO7OywcnB5UcsrumbVtzE0nMVJLJdPSKB/vt3mfkV/UhLJYPYe6byilDAQ1V3dABpL3WQs6q6Q+Q5jC7TtFvVKQ9042T9uSpSU/9s1L0h7MzUqxbCcYFdTby5lhnulZ4Y6B5/o4Pa1DmrM/BZS9leKmcGDRkD1kLUozFzNtafPtRz0O83yVJUekiHMa2pz99QHsF57OAmX54TL8Z05iAUDZJzmD2EBjYmCaRtBg/q2FefUj9Fap5cD81SyO0qzo1R7k9bGSxKA9IU05LXuTmj4A6P05jykJHCZaH15q4DV6e3Z2PwqIHd2iHIQOXltIdB0pRliA1bKwg4LgsX4xd7e/QncTavDeUfDSOuvLIptYjuMKnPwFPrjuIFpOlv5HZ9xQg==" target="_blank" rel="noopener"><span>Book on Vagaro</span></a></span>
+  <a class="quiet" href="https://wa.me/message/JENNVTPJMPMOB1" target="_blank" rel="noopener">WhatsApp</a>
 </nav>
 
 </body>

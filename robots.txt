@@ -1,0 +1,10 @@
+# Miami women's haircuts. Maria Gura
+#
+# Everything here is public and meant to be found.
+
+User-agent: *
+Allow: /
+
+# TODO: once the domain is live, add a sitemap line, or submit the site
+# directly in Google Search Console, which needs no file:
+# Sitemap: https://<domain>/sitemap.xml
