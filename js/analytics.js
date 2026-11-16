@@ -10,7 +10,7 @@
    While the ID below is still the placeholder, nothing is loaded and
    no request leaves the page.
    ─────────────────────────────────────────────────── */
-const MEASUREMENT_ID = "G-XXXXXXXXXX";
+const MEASUREMENT_ID = "G-NNK6EY45KF";
 
 if (/^G-[A-Z0-9]+$/.test(MEASUREMENT_ID) && MEASUREMENT_ID !== "G-XXXXXXXXXX") {
   window.dataLayer = window.dataLayer || [];
