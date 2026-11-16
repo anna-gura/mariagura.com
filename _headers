@@ -11,16 +11,38 @@
 # ---------------------------------------------------------------
 # What the policy allows, and why
 #
-# Nothing outside this domain. The site is one page of text, one photo,
-# a stylesheet, a few lines of script and six font files, and all of
-# them are served from here:
+# Everything the site is made of is served from this domain — one page
+# of text, one photo, a stylesheet, two small scripts and six font
+# files:
 #
 #   fonts    assets/fonts, instead of Google Fonts, so that no other
 #            origin is needed for type
 #   grain    assets/grain.svg, instead of a data: URI in the stylesheet,
 #            so that img-src does not need data:
 #   styles   css/style.css only; the markup carries no style="" at all
-#   script   js/main.js only; the page carries no inline script
+#   script   js/main.js and js/analytics.js; the page carries no
+#            inline script
+#
+# The one outside service is Google Analytics, added at the business's
+# request so that the SEO contractor can see where visitors come from.
+# These are the origins Google's own CSP guide lists for a GA4 tag
+# without Google Signals or Ads features, and nothing more:
+#
+#   script-src  https://*.googletagmanager.com   the gtag.js library
+#   img-src     https://*.google-analytics.com    measurement pixels
+#               https://*.googletagmanager.com
+#   connect-src https://*.google-analytics.com    sending the measurements;
+#               https://*.analytics.google.com    the wildcards cover the
+#               https://*.googletagmanager.com    regional endpoints
+#
+# js/analytics.js loads the library itself; Google's inline setup lines
+# live in that file, so no 'unsafe-inline' is needed. While its ID is a
+# placeholder, nothing is loaded at all.
+#
+# If Google Signals or Ads features are ever switched on in Analytics,
+# GA starts calling doubleclick and google.com as well, and those calls
+# will be blocked here until lines are added — on purpose. Turn them on
+# only together with a change to this file.
 #
 # The two <script type="application/ld+json"> blocks in index.html are
 # not an exception. They are data for search engines, the browser never
@@ -39,19 +61,27 @@
 #     turn, for a feature a link already does. The link opens the same
 #     booking page, in its own tab, with nobody else's code on ours.
 #
-#   Analytics
-#     None. If added later, it gets its own lines here, with a reason.
+#   Cloudflare Web Analytics
+#     Cloudflare injects its beacon into the page when Web Analytics is
+#     on for the domain. With Google Analytics in place a second counter
+#     adds nothing, so it stays blocked here and should be switched off
+#     in the Cloudflare dashboard.
+#
+#   Google Tag Manager
+#     A container that can load any script chosen later in Google's
+#     dashboard, which is exactly what this policy exists to prevent.
+#     GA is loaded directly instead.
 #
 #   require-trusted-types-for 'script'
-#     There is nothing for it to guard: main.js never writes markup.
-#     Worth adding the day script grows beyond toggling one class.
+#     Would block Google's library, which builds script elements in
+#     ways Trusted Types refuses. Our own scripts never write markup.
 #
 #   HSTS preload
 #     A one-way door: browsers ship the list baked in, and removal takes
 #     months. Worth adding once the domain has settled.
 
 /*
-  Content-Security-Policy: default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'none'; script-src 'self' https://*.googletagmanager.com; style-src 'self'; img-src 'self' https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests
 
   # HTTPS only, for a year, including any subdomain.
   Strict-Transport-Security: max-age=31536000; includeSubDomains
@@ -71,7 +101,7 @@
 
   # Hardware and ambient APIs the site does not use and must not acquire
   # by accident. An empty list denies the page and everything it frames.
-  Permissions-Policy: accelerometer=(), autoplay=(), browsing-topics=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(), geolocation=(), gyroscope=(), idle-detection=(), local-fonts=(), magnetometer=(), microphone=(), midi=(), payment=(), publickey-credentials-get=(), screen-wake-lock=(), serial=(), usb=(), xr-spatial-tracking=()
+  Permissions-Policy: accelerometer=(), autoplay=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(), geolocation=(), gyroscope=(), idle-detection=(), local-fonts=(), magnetometer=(), microphone=(), midi=(), payment=(), publickey-credentials-get=(), screen-wake-lock=(), serial=(), usb=(), xr-spatial-tracking=()
 
   # Our own files cannot be pulled into another site's page. Link
   # previews are unaffected: WhatsApp, Facebook and Google fetch the

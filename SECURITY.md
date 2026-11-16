@@ -9,7 +9,8 @@ including if the answer is that it is known or not a problem.
 ## What the threat model actually is
 
 The site is a single static page. It has no server code, no database,
-no forms, no accounts, and it stores nothing about its visitors. Booking
+no forms and no accounts. The only data collected about visitors is
+what Google Analytics measures. Booking
 happens on Vagaro, messages on WhatsApp and Instagram; this site only
 links to them.
 
@@ -27,11 +28,13 @@ That leaves two things worth protecting:
 
 - No inline scripts and no `style=""` attributes; the CSP has no
   `unsafe-inline`.
-- No `innerHTML`, `eval`, `document.write`, or `new Function`. Script
-  only toggles a class.
+- No `innerHTML`, `eval`, `document.write`, or `new Function` in our own
+  code. `main.js` toggles a class; `analytics.js` loads Google Analytics.
 - Every outside link carries `rel="noopener"`.
-- No third-party origin is loaded. A new one needs a CSP line in
-  `_headers`, and every CSP line needs a reason written next to it.
+- The only third-party code is Google Analytics, from the origins
+  listed in `_headers`. Anything else (Tag Manager, pixels, chat
+  widgets) needs a CSP line there first, and every CSP line needs a
+  reason written next to it.
 
 ## Headers
 
