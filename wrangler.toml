@@ -3,6 +3,8 @@ compatibility_date = "2026-11-01"
 
 [assets]
 directory = "./"
+# Unknown addresses get 404.html with a real 404 status, instead of an empty response.
+not_found_handling = "404-page"
 
 [observability]
 enabled = true

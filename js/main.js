@@ -31,7 +31,7 @@ const SHADOWED = [
   ".mark", ".headline", ".lede", ".proof", ".quiet",
   ".s-head h2", ".s-head p", ".process h3", ".cut h3",
   ".price-big .num", "blockquote", ".loc .addr",
-  ".cta h2", ".cta p",
+  ".cta h2", ".cta p", ".teaser h3",
 ].join(",");
 
 const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
@@ -94,3 +94,24 @@ function scheduleShadows() {
 castShadows();
 document.fonts.ready.then(scheduleShadows);
 new ResizeObserver(scheduleShadows).observe(document.body);
+
+/* ── меню на вузьких екранах ─────────────────────────
+   <details> відкривається сам; тут лише закриваємо його,
+   коли пункт вибрано, клікнули повз або натиснули Esc.
+   ─────────────────────────────────────────────────── */
+const menu = document.querySelector(".menu");
+
+if (menu) {
+  menu.addEventListener("click", (e) => {
+    if (e.target.closest("nav a")) menu.open = false;
+  });
+  document.addEventListener("click", (e) => {
+    if (menu.open && !menu.contains(e.target)) menu.open = false;
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && menu.open) {
+      menu.open = false;
+      menu.querySelector("summary").focus();
+    }
+  });
+}

@@ -126,9 +126,37 @@ b,strong{font-weight:500;color:var(--type)}
   text-shadow:var(--sh-text-big);
 }
 .mark em{font-style:italic;color:var(--gloss)}
-.top nav{display:flex;gap:1.6rem;margin-left:auto}
+.top .links{display:flex;gap:1.6rem;margin-left:auto}
 .top nav a{font-size:.86rem;color:var(--type-soft);text-decoration:none;transition:color .5s var(--ease)}
 .top nav a:hover{color:var(--type)}
+/* сторінка, на якій ми зараз: світла, з тонкою золотою рискою */
+.top nav a[aria-current="page"]{color:var(--type);box-shadow:inset 0 -1px 0 var(--gloss)}
+
+/* ── меню на вузьких екранах ─────────────────────────
+   <details> відкривається й без JavaScript; main.js лише
+   закриває його після вибору пункту чи кліку повз.
+   ─────────────────────────────────────────────────── */
+.menu{display:none;position:relative}
+.menu summary{
+  list-style:none; cursor:pointer;
+  font-size:.86rem; color:var(--type-soft);
+  padding:.4rem 0; border-bottom:1px solid var(--line);
+  transition:color .5s var(--ease), border-color .5s var(--ease);
+}
+.menu summary::-webkit-details-marker{display:none}
+.menu summary::after{content:"+";display:inline-block;margin-left:.45rem;color:var(--gloss);transition:transform .5s var(--ease)}
+.menu[open] summary{color:var(--type);border-color:var(--gloss)}
+.menu[open] summary::after{transform:rotate(45deg)}
+.menu nav{
+  position:absolute; right:0; top:calc(100% + .9rem);
+  min-width:13rem; padding:.6rem 1.4rem;
+  display:flex; flex-direction:column;
+  background:rgba(11,7,4,.97); border:1px solid var(--line);
+  box-shadow:0 24px 50px -20px rgba(0,0,0,.8);
+}
+.menu nav a{font:400 1.45rem/1.2 var(--f-display);color:var(--type);padding:.55rem 0;border-bottom:1px solid var(--line-2)}
+.menu nav a:last-child{border-bottom:0}
+.menu nav a[aria-current="page"]{color:var(--gloss);box-shadow:none}
 
 /* ── лампа (кнопка запису) ───────────────────────────
    Матова колба з ниткою розжарення. Дихає повільно.
@@ -229,8 +257,8 @@ a:focus-visible,.book:focus-visible,summary:focus-visible{outline:2px solid var(
   opacity:0;
   animation:settle 1.6s var(--ease) forwards, drift 26s cubic-bezier(.42,0,.36,1) 2.6s infinite;
 }
-.headline > span:nth-child(1){animation-delay:.42s,2.6s}
-.headline > span:nth-child(2){animation-delay:.62s,3.1s}
+.headline > span:nth-of-type(1){animation-delay:.42s,2.6s}
+.headline > span:nth-of-type(2){animation-delay:.62s,3.1s}
 .headline small{
   display:block; margin-top:1.4rem;
   font:400 clamp(1rem,1.5vw,1.15rem)/1.5 var(--f-ui); letter-spacing:.01em;
@@ -429,7 +457,9 @@ blockquote cite{display:block;margin-top:1rem;font:500 .74rem/1 var(--f-ui);lett
 .cta .links{display:flex;gap:1.4rem;flex-wrap:wrap;margin-top:1.6rem}
 
 footer{border-top:1px solid var(--line);padding:1.6rem 0 2rem;font-size:.84rem;color:var(--type-soft)}
-footer .wrap{display:flex;flex-wrap:wrap;gap:.5rem 1.6rem}
+footer .wrap{display:grid;gap:1rem}
+.foot-pages,.foot-info{display:flex;flex-wrap:wrap;gap:.5rem 1.6rem}
+.foot-pages a{font-size:.92rem}
 footer a{color:var(--type);text-decoration:none;border-bottom:1px solid var(--line)}
 
 /* те, що раніше стояло в атрибутах style="" — CSP не пускає inline-стилі */
@@ -437,6 +467,39 @@ footer a{color:var(--type);text-decoration:none;border-bottom:1px solid var(--li
 .facts dl > .span-2{grid-column:span 2}
 .loc .parking{margin-top:.6rem}
 .loc-intro{margin-bottom:.8rem}
+
+/* ── внутрішні сторінки ──────────────────────────────
+   Та сама кімната з лампою, що й на головній, тільки нижча:
+   заголовок сторінки ліворуч, лампа праворуч, без смуги
+   переваг унизу. Тіні рахуються від цієї лампи так само.
+   ─────────────────────────────────────────────────── */
+.stage.page{min-height:auto}
+.stage.page .center{padding-block:clamp(3.5rem,10vh,6.5rem) clamp(2.5rem,7vh,4.5rem)}
+.stage.page .headline{font-size:clamp(2.6rem,8vw,6rem)}
+.page-title .eyebrow{margin-bottom:1.1rem;opacity:0;animation:settle 1.5s var(--ease) .3s forwards}
+.stage.page + section.s{padding-top:clamp(2rem,5vw,4rem)}
+.lede a{color:var(--type);text-decoration:none;border-bottom:1px solid var(--gloss)}
+
+/* ── анонси на головній ──────────────────────────────
+   Кожна картка — короткий вхід на свою сторінку.
+   ─────────────────────────────────────────────────── */
+.teasers{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+.teaser{
+  display:flex; flex-direction:column; gap:.6rem;
+  padding:2rem 2rem 2.2rem 0; text-decoration:none;
+  border-bottom:1px solid var(--line);
+  transition:background-color .6s var(--ease);
+}
+.teaser:not(:nth-child(3n+1)){padding-left:2rem;border-left:1px solid var(--line)}
+.teaser h3{font:400 clamp(1.55rem,2.2vw,1.9rem)/1.1 var(--f-display);text-shadow:var(--sh-head-text)}
+.teaser h3 em{color:var(--gloss);text-shadow:var(--glow-word), var(--sh-glow-text)}
+.teaser p:not(.eyebrow){font-size:.95rem;color:var(--type-soft);flex:1}
+.teaser .more{font-size:.86rem;color:var(--type-soft);transition:color .5s var(--ease)}
+.teaser .more::after{content:"→";display:inline-block;margin-left:.45rem;color:var(--gloss);transition:transform .5s var(--ease)}
+.teaser:hover{background:rgba(61,44,28,.18)}
+.teaser:hover .more{color:var(--type)}
+.teaser:hover .more::after{transform:translateX(4px)}
+.teaser:focus-visible{outline:2px solid var(--gloss);outline-offset:-2px}
 
 /* мобільна панель запису */
 .mbar{display:none}
@@ -454,7 +517,7 @@ footer a{color:var(--type);text-decoration:none;border-bottom:1px solid var(--li
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   .headline > span{opacity:1;color:var(--type);-webkit-text-fill-color:var(--type)}
-  .headline small,.lede,.actions,.proof{opacity:1}
+  .headline small,.lede,.actions,.proof,.page-title .eyebrow{opacity:1}
   .book::after{display:none}
 }
 
@@ -474,6 +537,8 @@ footer a{color:var(--type);text-decoration:none;border-bottom:1px solid var(--li
     font-size:clamp(3.2rem,7vw,8.4rem);
   }
   .lede{grid-column:2;grid-row:1;align-self:end;max-width:100%;margin-bottom:1.6rem}
+  .page-title{grid-column:1;grid-row:1 / span 2;align-self:center}
+  .page-title .headline{margin-bottom:0}
   .actions{grid-column:2;grid-row:2;align-self:start;gap:1.3rem}
   .stage::before{
     background:
@@ -486,8 +551,12 @@ footer a{color:var(--type);text-decoration:none;border-bottom:1px solid var(--li
 }
 
 @media (max-width:999px){
-  .top nav{display:none}
-  .top .lamp{margin-left:auto}
+  .top .links{display:none}
+  .menu{display:block;margin-left:auto}
+  .top .lamp{margin-left:0}
+  .teasers{grid-template-columns:1fr 1fr}
+  .teaser,.teaser:not(:nth-child(3n+1)){padding:1.6rem 1.4rem 2rem 0;border-left:0}
+  .teaser:nth-child(2n){padding-left:1.4rem;border-left:1px solid var(--line)}
   .s-head,.two,.about,.loc,.cta-grid,.facts{grid-template-columns:1fr}
   .s-head{gap:.8rem}
   .two > div:first-child:empty{display:none}
@@ -502,6 +571,8 @@ footer a{color:var(--type);text-decoration:none;border-bottom:1px solid var(--li
   .about .portrait{max-width:20rem}
 }
 @media (max-width:620px){
+  .teasers{grid-template-columns:1fr}
+  .teaser,.teaser:nth-child(2n){padding:1.5rem 0;border-left:0}
   .headline{font-size:clamp(2.5rem,12.4vw,4.2rem)}
   .top .lamp{display:none}
   .actions{gap:1.25rem}
