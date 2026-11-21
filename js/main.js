@@ -28,7 +28,7 @@ window.addEventListener("scroll", updateTopBar, { passive: true });
    атрибут style="", тож CSP (style-src 'self') його пропускає.
    ─────────────────────────────────────────────────── */
 const SHADOWED = [
-  ".mark", ".headline", ".lede", ".proof", ".quiet",
+  ".mark", ".headline", ".lede", ".proof", ".hint",
   ".s-head h2", ".s-head p", ".process h3", ".cut h3",
   ".price-big .num", "blockquote", ".loc .addr",
   ".cta h2", ".cta p", ".teaser h3",
@@ -114,4 +114,20 @@ if (menu) {
       menu.querySelector("summary").focus();
     }
   });
+}
+
+/* ── нижня панель запису на телефоні ─────────────────
+   Поки кнопки першого екрана видно, панель їх лише
+   дублювала б і перекривала. Вона виїжджає знизу, коли
+   ці кнопки сховалися за край. Без JavaScript панель
+   просто видно завжди.
+   ─────────────────────────────────────────────────── */
+const mbar = document.querySelector(".mbar");
+const firstActions = document.querySelector(".center .actions");
+
+if (mbar && firstActions && "IntersectionObserver" in window) {
+  document.documentElement.classList.add("mbar-auto");
+  new IntersectionObserver(([entry]) => {
+    mbar.classList.toggle("on", !entry.isIntersecting && entry.boundingClientRect.top < 0);
+  }).observe(firstActions);
 }

@@ -23,6 +23,19 @@ The page is a dark, warm room. The only light in it is the booking button, drawn
 
 Every page opens in the same room: its heading on the left, the lamp on the right, the shadows falling away from it. The final call to action has its own lamp, so each page ends the way it begins: in light, next to the button.
 
+### Clear for everyone
+
+The site is written for people who may rarely use the internet, so the beauty never gets in the way of finding things. The rules follow the ones used on EdgeLine Academy:
+
+- **Readable text.** Body text is 18 px on a phone and 19 px on a computer, weight 400. Nothing meant to be read is under 16 px; only the small uppercase labels are 14 px.
+- **Contrast checked.** Every text colour passes WCAG AA against the darkest wall and against the warm area next to the lamp, where it is hardest.
+- **One main button per screen.** The lamp, always labelled "Book a haircut", with a line under it saying it opens Vagaro and needs no deposit. The second action, WhatsApp, is an outlined button, not a faint link.
+- **Big enough to tap.** Everything that can be pressed is at least 48 px tall; the main buttons are 56 px.
+- **Plain navigation.** The menu says "Home", "About Maria" and "Questions", not a bare logo or "FAQ". On a phone it is a framed button with an icon and the word "Menu". The current page is underlined, and every inner page has a "← Home" link above its title.
+- **Links look like links.** Underlined, in the text colour, never only coloured.
+- **Short by default.** Long explanations are folded: the heading and the first sentence stay visible, the rest opens with the same round "+" used in Questions. The text is still in the HTML, so search engines index it and the browser's own find-in-page opens the right fold. What people come for (prices, address, hours, the list of haircuts) is never folded.
+- **The booking bar on a phone** slides up only after the first screen's buttons have scrolled away, so the two never cover each other.
+
 ### What is deliberately not here
 
 No illustrations, icons or diagrams of haircuts. A drawn bob looks nothing like a real one, and this is a page about real hair. The only image is Maria's own photograph, lit from the same side as the page.
